@@ -4,10 +4,31 @@ call plug#begin('~/.vim/plugged')
 " Using plug
 Plug 'dylanaraps/wal.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'jalvesaq/Nvim-R'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-rmarkdown'
+Plug 'scrooloose/nerdtree'
+call plug#end()
 colorscheme wal
 " Indent and syntax highlighting
 filetype plugin indent on
 syntax enable
+
+" Open nerdtree if no files are specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Set nerdtree shortcut (Ctrl + n)
+map <C-n> :NERDTreeToggle<CR>
+" Close nerdtree when opening a file
+let NERDTreeQuitOnOpen = 1
+" Open foler on 'l'
+"let NERDTreeMapActivateNode='<o>'
+"let NERDTreeMapCloseDir='<x>'
+"Yanks in vim can be pasted outside vim
+set clipboard=unnamedplus
 
 " Correct encoding
 set encoding=utf-8
